@@ -20,7 +20,7 @@ const Footer = () => {
               className="mt-7 pl-4  text-white"
             >
               <h4 className="h4 text-[17px] lg:text-[48px] sm:text-[22px] font-medium pt-40 mb-10">
-              Let's talk about<br/> your project
+              Let’s talk about <br/> your project
               </h4>
               <p className="text-[14px] lg:text-[16px] sm:text-[16px] mb-10">
               Ready to take it to the next level? Contact us today and find out how our expertise can help your business grow.
