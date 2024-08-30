@@ -18,7 +18,8 @@ export default function Home() {
   }, []);
   return (
     <>
-    
+    {/* landing page */}
+
         <Hero/>
         <Design/>
         <Service/>

@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Rokkitt as RokkittFont } from "next/font/google"; // Renamed to avoid naming conflict
 import "./globals.css";
 import Navbar from "@/components/shared/Navbar";
 import Footer from "@/components/shared/Footer";
 
-const inter = Inter({ subsets: ["latin"] });
+// Instantiate the font with the correct variable name and weight
+const rokkitt = RokkittFont({
+  subsets: ["latin"],
+  weight: "400", // Specify the weight
+});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -17,18 +21,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <>
-    
     <html lang="en">
-      
-      <body className={inter.className}>
-      <Navbar/>
+      <body className={rokkitt.className}>
+        <Navbar />
         {children}
-        <Footer/>
-        </body>
-      
+        <Footer />
+      </body>
     </html>
-    
-    </>
   );
 }

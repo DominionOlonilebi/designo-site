@@ -5,18 +5,23 @@
 
 :root {
   overflow-x: clip;
-font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family:serif;
 }
 
 .hero-container .hero-img {
   background-image: url('../public/hero-img/Ovals.png');
   background-repeat: no-repeat;
-  height: 700px;
-  width: 800px;
-}
-.hero-container .h4{
-  line-height: 50px;
+  background-size: cover;
 }
 .service-container p{
   line-height: 30px;
+}
+.contact-container .hero-img {
+  background-image: url('../public/hero-img/Ovals.png');
+  background-repeat: no-repeat;
+  height: 700px;
+  width: 800px;
+}
+.call-section {
+  line-height: 38px;
 }
