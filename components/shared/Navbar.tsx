@@ -1,39 +1,79 @@
-import React from 'react'
-import LogoDark from '@/public/shared-img/logo-dark.png'
-import Image from 'next/image'
+"use client";
+
+import React, { useState } from "react";
+import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import LogoDark from "@/public/shared-img/logo-dark.png";
+import Image from "next/image";
+import Link from "next/link";
 
 const Navbar = () => {
-  return (
-    <div>
-<nav className="bg-white border-gray-200 dark:bg-gray-900 ">
-  <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto py-12 px-32">
-    <a href="/" className="">
-        <Image src={LogoDark}  className="h-6 w-[180px]" alt="designo" />
-    </a>
-    <button data-collapse-toggle="navbar-default" type="button" className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
-        <span className="sr-only">Open main menu</span>
-        <svg className="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
-        </svg>
-    </button>
-    <div className="hidden w-full md:block md:w-auto uppercase" id="navbar-default">
-      <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-        <li>
-          <a href="/about" className="block py-2 px-3 md:hover:text-[#E7816B] text-black rounded md:bg-transparent  md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Our Company</a>
-        </li>
-        <li>
-          <a href="/location" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-[#E7816B] md:p-0 dark:text-white md:dark:hover:text-[#E7816B] dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Locations</a>
-        </li>
-        <li>
-          <a href="/contacts" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-[#E7816B] md:p-0 dark:text-white md:dark:hover:text-[#E7816B] dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</a>
-        </li>
-        
-      </ul>
-    </div>
-  </div>
-</nav>
-    </div>
-  )
-}
+  const [navIsOpen, setNavIsOpen] = useState(false);
 
-export default Navbar
+  const toggleNav = () => {
+    setNavIsOpen(!navIsOpen);
+  };
+
+  const navItems = [
+    { id: 1, text: "Our Company", link: "/about" },
+    { id: 2, text: "Locations", link: "/location" },
+    { id: 3, text: "Contact", link: "/contacts" },
+  ];
+
+  const desktopNav = (
+    <ul className="hidden md:flex">
+      {navItems.map((item) => (
+        <li
+          key={item.id}
+          className="px-7 hover:bg-[#fde1da] py-2 uppercase rounded-xl text-md cursor-pointer duration-300 hover:text-black"
+        >
+          <Link href={item.link}>{item.text}</Link>
+        </li>
+      ))}
+    </ul>
+  );
+
+  const mobileNav = (
+    <ul
+      className={
+        navIsOpen
+          ? "fixed z-40 md:hidden left-0 top-0 w-[60%] h-full border-r border-r-[#f5a998] bg-slate-50 ease-in-out duration-500"
+          : "ease-in-out w-[60%] duration-500 fixed top-0 bottom-0 left-[-100%]"
+      }
+    >
+      {/* Mobile Logo */}
+      <div className="m-4">
+        <Link href="/">
+          <Image src={LogoDark} alt="logo" width={130} />
+        </Link>
+      </div>
+
+      {/* Mobile Navigation Items */}
+      {navItems.map((item) => (
+        <li
+          key={item.id}
+          className="p-4 border-b rounded-xl hover:bg-[#f5a998] duration-300 hover:text-black cursor-pointer border-[#f5a998]"
+        >
+          <Link href={item.link}>{item.text}</Link>
+        </li>
+      ))}
+    </ul>
+  );
+
+  return (
+    <div className="mb-5 bg-slate-50 w-full flex justify-between items-center h-24 mx-auto px-4 text-black">
+      <div className="lg:mx-36 mx-0">
+        {/* Logo */}
+        <Link href="/">
+          <Image src={LogoDark} alt="logo" width={170} />
+        </Link>
+      </div>
+      <div className="lg:mx-32 mx-0">{desktopNav}</div>
+      <div onClick={toggleNav} className="block md:hidden">
+        {navIsOpen ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={20} />}
+      </div>
+      {mobileNav}
+    </div>
+  );
+};
+
+export default Navbar;

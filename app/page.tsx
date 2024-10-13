@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { useEffect } from "react";
 import Aos from "aos";
 import "aos/dist/aos.css";
@@ -7,7 +7,6 @@ import Design from "@/components/landing-page/Design";
 import Service from "@/components/landing-page/Service";
 
 export default function Home() {
-
   useEffect(() => {
     Aos.init({
       duration: 1000,
@@ -18,12 +17,11 @@ export default function Home() {
   }, []);
   return (
     <>
-    {/* landing page */}
+      {/* landing page */}
 
-        <Hero/>
-        <Design/>
-        <Service/>
-    
+      <Hero />
+      <Design />
+      <Service />
     </>
   );
 }
